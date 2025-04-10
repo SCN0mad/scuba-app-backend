@@ -13,13 +13,20 @@ require('dotenv').config();
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_51R7KHwK5uX1D1gcUsIcHIxBMB9yZOvQGPAx2fUUAXWhHJnEqAqRdwR4WlPkSOCjPLtQ28QRdMJqbQOEI72kFkUvZ00KbyYKDKB');
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const admin = require('firebase-admin');
+admin.initializeApp({
+  credential: admin.credential.cert('./serviceAccountKey.json'),
+});
+
 
 // Dynamic CORS for local development
 app.use(cors({
   origin: '*', // Allow all origins for now
   credentials: true,
 }));
+
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   console.log('Incoming request:', req.method, req.url, req.headers);
