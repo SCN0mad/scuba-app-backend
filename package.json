@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "body-parser": "^2.x.x",
+    "cors": "^2.x.x",
+    "dotenv": "^x.x.x",
+    "express": "^4.x.x",
+    "firebase-admin": "^x.x.x",
+    "mongodb": "3.7",
+    "mongoose": "^x.x.x",
+    "multer": "^1.x.x",
+    "socket.io": "^4.x.x",
+    "stripe": "^x.x.x"
+    "http": "0.0.1-security",
+  }
+}
