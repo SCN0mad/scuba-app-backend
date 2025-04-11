@@ -1,25 +1,23 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const admin = require('firebase-admin');
+const admin = require('firebase-admin'); // Declare once here
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const socketIo = require('socket.io');
 const http = require('http');
-const Stripe = require('stripe');
-const path = require('path');
-require('dotenv').config();
+const socketIo = require('socket.io');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
-require('dotenv').config();
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const admin = require('firebase-admin');
+
+// Initialize Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert('./serviceAccountKey.json'),
 });
-
+console.log('Firebase Admin SDK initialized successfully');
 
 // Dynamic CORS for local development
 app.use(cors({
