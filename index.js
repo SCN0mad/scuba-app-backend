@@ -8,7 +8,7 @@ const multer = require('multer');
 const http = require('http');
 const socketIo = require('socket.io');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-
+const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
